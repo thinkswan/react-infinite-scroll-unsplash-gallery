@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Image from './Image'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 export class Images extends Component {
-  state = {
-    images: [],
-    count: 30,
-    start: 1
+  constructor () {
+    super()
+
+    this.state = {
+      images: [],
+      count: 30,
+      start: 1
+    }
+
+    this.fetchImages = this.fetchImages.bind(this)
   }
 
   componentDidMount () {
@@ -17,11 +24,29 @@ export class Images extends Component {
       .then(res => this.setState({ images: res.data }))
   }
 
+  fetchImages () {
+    const { count, start } = this.state
+
+    this.setState({ start: start + count })
+
+    axios
+      .get(`/api/photos?count=${count}&start=${start}`)
+      .then(res => this.setState({ images: res.data }))
+  }
+
   render () {
-    console.log(this.state)
+    const { images } = this.state
 
     return (
-      <div>Hello</div>
+      <div className="images">
+        <InfiniteScroll
+          dataLength={images.length}
+          next={this.fetchImages}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}>
+          {images.map(image => <Image key={image.id} image={image} />)}
+        </InfiniteScroll>
+      </div>
     )
   }
 }
