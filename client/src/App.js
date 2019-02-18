@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Images from './components/Images'
 import './App.css';
 
 class App extends Component {
@@ -15,9 +16,7 @@ class App extends Component {
                 </h1>
               </div>
 
-              <div className="images">
-
-              </div>
+              <Images />
 
             </div>
           </div>
