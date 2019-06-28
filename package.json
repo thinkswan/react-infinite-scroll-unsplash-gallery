@@ -1,7 +1,7 @@
 {
   "name": "react-infinite-scroll-unsplash-gallery",
   "version": "1.0.0",
-  "description": "",
+  "description": "A React app that displays an Unsplash gallery with infinite scrolling.",
   "main": "index.js",
   "scripts": {
     "start": "node server",
@@ -10,7 +10,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
-  "author": "",
+  "author": "Graham Swan <thinkswan@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "babel-register": "^6.26.0",
